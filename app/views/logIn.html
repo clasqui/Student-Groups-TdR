@@ -1,11 +1,13 @@
 <div class="container">
       <div class="login-container">
+          <h1>Student Groups</h1>
+          <h4>Inici de Sessió</h4>
         <div id="output"></div>
-        <div class="form-box" id="login-box">
+        <div class="form-box">
           <form action="" method="">
-            <input name="user" type="text" placeholder="username" ng-model="userCredentials.username">
-            <input placeholder="password" type="password" ng-model="userCredentials.password">
-            <button class="btn btn-info btn-block login" type="submit" ng-click="doLogin()">Login</button>
+            Nom d'Usuari:  <input name="user" type="text" ng-model="userCredentials.username"><br>
+            Contrassenya:  <input type="password" ng-model="userCredentials.password">
+            <button class="btn btn-info btn-block login" type="submit" ng-click="doLogin()">Entra</button>
 
           </form>
         </div>
