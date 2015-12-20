@@ -39,7 +39,7 @@ angular
         url: '/login',
         views: {
           'login@': {
-            templateUrl: 'partials/logIn.html'
+            templateUrl: 'views/logIn.html'
           }
         },
         controller: 'AppCtrl',

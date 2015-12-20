@@ -1,4 +1,4 @@
-// Generated on 2015-07-28 using generator-angular 0.12.1
+// Generated on 2015-12-20 using generator-angular 0.12.1
 'use strict';
 
 // # Globbing
@@ -22,8 +22,7 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist',
-    deploy: 'deploy'
+    dist: 'dist'
   };
 
   // Define the configuration for all the tasks
@@ -151,16 +150,6 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      cloud: {
-        files: [{
-          dot: true,
-          src: [
-            '.tmp',
-            'deploy/{,*/}*',
-            '!deploy/.git{,*/}*'
-          ]
-        }]
-      },
       server: '.tmp'
     },
 
@@ -223,14 +212,6 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
-      },
-      deploy: {
-        src: [
-          '<%= yeoman.deploy %>/scripts/{,*/}*.js',
-          '<%= yeoman.deploy %>/styles/{,*/}*.css',
-          '<%= yeoman.deploy %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.deploy %>/styles/fonts/*'
-        ]
       }
     },
 
@@ -238,69 +219,34 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      dist: {
-        html: '<%= yeoman.app %>/index.html',
-        options: {
-          dest: '<%= yeoman.dist %>',
-          flow: {
-            html: {
-              steps: {
-                js: ['concat', 'uglifyjs:dist'],
-                css: ['cssmin']
-              },
-              post: {}
-            }
-          } 
-        }
-      },
-      deploy: {
-        html: '<%= yeoman.app %>/index.html',
-        options: {
-          dest: '<%= yeoman.deploy %>',
-          flow: {
-            html: {
-              steps: {
-                js: ['concat', 'uglifyjs:deploy'],
-                css: ['cssmin']
-              },
-              post: {}
-            }
-          } 
+      html: '<%= yeoman.app %>/index.html',
+      options: {
+        dest: '<%= yeoman.dist %>',
+        flow: {
+          html: {
+            steps: {
+              js: ['concat', 'uglifyjs'],
+              css: ['cssmin']
+            },
+            post: {}
+          }
         }
       }
-
     },
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      dist: {
-        html: ['<%= yeoman.dist %>/{,*/}*.html'],
-        css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
-        js: ['<%= yeoman.dist %>/scripts/{,*/}*.js'],
-        options: {
-          assetsDirs: [
-            '<%= yeoman.dist %>',
-            '<%= yeoman.dist %>/images',
-            '<%= yeoman.dist %>/styles'
-          ],
-          patterns: {
-            js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
-          }
-        }
-      },
-      deploy: {
-        html: ['<%= yeoman.deploy %>/{,*/}*.html'],
-        css: ['<%= yeoman.deploy %>/styles/{,*/}*.css'],
-        js: ['<%= yeoman.deploy %>/scripts/{,*/}*.js'],
-        options: {
-          assetsDirs: [
-            '<%= yeoman.deploy %>',
-            '<%= yeoman.deploy %>/images',
-            '<%= yeoman.deploy %>/styles'
-          ],
-          patterns: {
-            js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
-          }
+      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+      js: ['<%= yeoman.dist %>/scripts/{,*/}*.js'],
+      options: {
+        assetsDirs: [
+          '<%= yeoman.dist %>',
+          '<%= yeoman.dist %>/images',
+          '<%= yeoman.dist %>/styles'
+        ],
+        patterns: {
+          js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
         }
       }
     },
@@ -309,38 +255,27 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    cssmin: {
-      dist: {
-        files: {
-          '<%= yeoman.dist %>/styles/main.css': [
-            '.tmp/styles/{,*/}*.css'
-          ]
-        }
-      }
-    },
-    uglify: {
-      dist: {
-        files: {
-          './dist/scripts/scripts.js': [
-            './app/scripts/app.js',
-            './app/scripts/controllers/*.js',
-            './app/scripts/services/*.js'
-          ]
-        }
-      },
-      deploy: {
-        files: {
-          './deploy/scripts/scripts.js': [
-            './app/scripts/app.js',
-            './app/scripts/controllers/*.js',
-            './app/scripts/services/*.js'
-          ]
-        }
-      }
-    },
-    concat: {
-      dist: {}
-    },
+    // cssmin: {
+    //   dist: {
+    //     files: {
+    //       '<%= yeoman.dist %>/styles/main.css': [
+    //         '.tmp/styles/{,*/}*.css'
+    //       ]
+    //     }
+    //   }
+    // },
+    // uglify: {
+    //   dist: {
+    //     files: {
+    //       '<%= yeoman.dist %>/scripts/scripts.js': [
+    //         '<%= yeoman.dist %>/scripts/scripts.js'
+    //       ]
+    //     }
+    //   }
+    // },
+    // concat: {
+    //   dist: {}
+    // },
 
     imagemin: {
       dist: {
@@ -349,14 +284,6 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
           dest: '<%= yeoman.dist %>/images'
-        }]
-      },
-      deploy: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.deploy %>/images'
         }]
       }
     },
@@ -368,14 +295,6 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.svg',
           dest: '<%= yeoman.dist %>/images'
-        }]
-      },
-      deploy: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.svg',
-          dest: '<%= yeoman.deploy %>/images'
         }]
       }
     },
@@ -394,20 +313,6 @@ module.exports = function (grunt) {
           src: ['*.html'],
           dest: '<%= yeoman.dist %>'
         }]
-      },
-      deploy: {
-        options: {
-          collapseWhitespace: true,
-          conservativeCollapse: true,
-          collapseBooleanAttributes: true,
-          removeCommentsFromCDATA: true
-        },
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.deploy %>',
-          src: ['*.html'],
-          dest: '<%= yeoman.deploy %>'
-        }]
       }
     },
 
@@ -416,17 +321,7 @@ module.exports = function (grunt) {
         options: {
           module: 'stugrApp',
           htmlmin: '<%= htmlmin.dist.options %>',
-          usemin: './dist/scripts/scripts.js'
-        },
-        cwd: '<%= yeoman.app %>',
-        src: 'views/{,*/}*.html',
-        dest: '.tmp/templateCache.js'
-      },
-      deploy: {
-        options: {
-          module: 'stugrApp',
-          htmlmin: '<%= htmlmin.deploy.options %>',
-          usemin: './deploy/scripts/scripts.js'
+          usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',
         src: 'views/{,*/}*.html',
@@ -451,9 +346,6 @@ module.exports = function (grunt) {
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
-      },
-      deploy: {
-        html: ['<%= yeoman.deploy %>/*.html']
       }
     },
 
@@ -482,31 +374,6 @@ module.exports = function (grunt) {
           cwd: 'bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
-        }]
-      },
-      cloud: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= yeoman.app %>',
-          dest: 'deploy/',
-          src: [
-            '*.{ico,png,txt}',
-            '.htaccess',
-            '*.html',
-            'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
-          ]
-        }, {
-          expand: true,
-          cwd: '.tmp/images',
-          dest: 'deploy/images',
-          src: ['generated/*']
-        }, {
-          expand: true,
-          cwd: 'bower_components/bootstrap/dist',
-          src: 'fonts/*',
-          dest: 'deploy/'
         }]
       },
       styles: {
@@ -548,7 +415,6 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
-      'test',
       'clean:server',
       'wiredep',
       'concurrent:server',
@@ -582,9 +448,9 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-    'cdnify:dist',
+    'cdnify',
     'cssmin',
-    'uglify:dist',
+    'uglify',
     'filerev',
     'usemin',
     'htmlmin'
@@ -595,18 +461,4 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
-
-  grunt.registerTask('deploy', [
-    'build',
-    'clean:cloud',
-    'copy:cloud'
-    ]);
-
-  grunt.registerTask('produce', [
-    'useminPrepare',
-    'concat',
-    'uglify',
-    'cssmin',
-    'usemin'
-]);
 };
