@@ -1,0 +1,29 @@
+<div ng-controller="AdminCtrl as admin">
+
+<h2>Eines d'administrador</h2>
+<div class="row">
+
+    <div class="col-md-8">
+	<h3>Crea un usuari</h3>
+
+	<form action="" method="">
+        <input name="user" type="text" placeholder="username" ng-model="newUser.username">
+        <input type="email" placeholder="email" ng-model="newUser.email">
+        <input type="text" placeholder="First Name" ng-model="newUser.first_name">
+        <input type="text" placeholder="Last Name" ng-model="newUser.last_name">
+        <select ng-model="newUser.role">
+        	<option value="1">Alumne</option>
+        	<option value="2">Professor</option>
+        	<option value="3">Coordinador</option>
+        </select>
+        <button class="btn btn-info btn-block register" type="submit" ng-click="doCreate()">Register</button>
+
+    </form>
+    </div>
+    <div class="col-md-4">
+        <p ng-show="statusShow">
+    	   {{ statusText }}
+        </P>
+    <div>
+</div>
+</div> 

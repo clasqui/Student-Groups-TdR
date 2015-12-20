@@ -1,0 +1,17 @@
+<h2>Els teus grups</h2>
+<div class="row">
+	<div class="col-md-8">
+		<input ng-model="searchData" id="searchGroupsBox" placeholder="Cerca" name="search">
+		<ul class="groupsList">
+			<li ng-repeat="group in myGroups | filter: searchData">
+				<span><a ui-sref="courseDetail({id: group.id})">{{group.nom}}</a></span>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="form-box col-md-4" ng-if="isAuthorized([userRoles.coord, userRoles.professor])">
+		Crea un grup: <input placeholder="Nom" name="name" ng-model="groupData.nom" type="text"><br>
+		<button class="btn btn-info btn-block register" type="submit" ng-click="createGroup()">Crea'l</button>
+	</div>
+
+</div>

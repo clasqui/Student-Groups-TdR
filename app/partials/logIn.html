@@ -1,0 +1,22 @@
+<div class="container">
+      <div class="login-container">
+        <div id="output"></div>
+        <div class="form-box">
+          <form action="" method="">
+            <input name="user" type="text" placeholder="username" ng-model="userCredentials.username">
+            <input placeholder="password" type="password" ng-model="userCredentials.password">
+            <div ng-show="registerUserMode">
+              <input type="email" placeholder="email" ng-model="userCredentials.email">
+              <input type="text" placeholder="First Name" ng-model="userCredentials.first_name">
+              <input type="text" placeholder="Last Name" ng-model="userCredentials.last_name">
+              <button class="btn btn-info btn-block register" type="submit" ng-click="doRegister()">Register</button>
+            </div>
+            <div ng-hide="registerUserMode">
+              <button class="btn btn-info btn-block login" type="submit" ng-click="doLogin()">Login</button>
+            </div>
+
+            <span class="register-link" ng-click="showRegistrationForm()">Crea un compte de coordinador</span>
+          </form>
+        </div>
+      </div>
+    </div>
