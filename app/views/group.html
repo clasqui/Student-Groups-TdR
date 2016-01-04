@@ -2,6 +2,9 @@
 <div class="row">
 	<div class="col-md-8">
 		<input ng-model="searchData" id="searchGroupsBox" placeholder="Cerca" name="search">
+		<div ng-if="noGroups">
+			No tens grups, crea'n un amb el formulari de l'esquerra.
+		</div>
 		<ul class="groupsList">
 			<li ng-repeat="group in myGroups | filter: searchData">
 				<span><a ui-sref="courseDetail({id: group.id})">{{group.nom}}</a></span>

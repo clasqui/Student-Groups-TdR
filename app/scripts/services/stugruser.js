@@ -23,6 +23,7 @@ angular.module('stugrApp')
         } else {
           role = USER_ROLES.alumne;
         }
+        console.log(role);
         return role
       }
     }, {

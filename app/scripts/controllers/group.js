@@ -13,7 +13,13 @@ angular.module('stugrApp')
     $scope.userRoles = USER_ROLES;
 
     GroupModel.getGroups().then(function(results) {
-       	$scope.myGroups = results;
+        if(results.length == 0) {
+            $scope.noGroups = true;
+            $scope.myGroups = [];
+        } else {
+            $scope.noGroups = false;
+       	    $scope.myGroups = results;
+        }
     }, 
     function(aError) {
         console.log(aError);
