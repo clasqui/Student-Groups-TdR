@@ -17,10 +17,7 @@ body {
   padding-right: 15px;
   margin-top: 10px;
 }
-button {
-  max-width: 100pt;
 
-}
 
 /* Custom page header */
 .header {
@@ -120,6 +117,184 @@ input#searchGroupsBox {
   margin: auto;
 }
 
-.login-container button, input {
+.login-container button {
   margin-top: 20pt;
+}
+
+.login-container input {
+  margin-top: 20pt;
+}
+
+.timetableList {
+  list-style-type: none;
+  margin-top: 10px;
+}
+.timetableList li {
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-bottom: 1px black solid;
+
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+
+}
+
+.timetableList li:hover {
+  background: #f0f0f0;
+}
+
+.timetableList li:first-child {
+    border-top: 1px black solid;
+}
+
+.timetableList li:before {
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\e023";
+    font-family: 'Glyphicons Halflings';
+    font-size: 14pt;
+    float: left;
+    margin-top: 3px;
+    margin-left: -22px;
+    color: #000;
+
+}
+
+.row h3 {
+  text-align: center;
+}
+
+.timetabledisplay {
+  text-align: center;
+  margin: 20px;
+}
+
+.timetabledisplay ul {
+  list-style-type: none;
+  display:inline;
+}
+.timetabledisplay ul li {
+  display: inline;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-right: 1px solid blue;
+  font-size: 12pt
+}
+.timetabledisplay ul li:first-child {
+  border-left: 1px solid blue;
+}
+
+.noteDiv {
+  padding-left: 20px;
+  margin-top: 30px;
+}
+
+.noteDIv .author {
+  font-size: 14pt;
+  text-align: center;
+}
+.noteDiv .date {
+  color: grey;
+  font-weight: lighter;
+  text-align: center;
+}
+
+.noteDiv .missatge {
+  font-weight: normal;
+  margin-top: -20px;
+}
+.deleteButton {
+  color: red;
+  display: none;
+  cursor: pointer;
+}
+.noteDiv .header:hover .deleteButton {
+  display: inline;
+}
+
+.taskList {
+  margin-top: 30px;
+  list-style-type: none;
+}
+
+.taskList li {
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
+
+.taskList li .entrega {
+  color: grey;
+  font-size: 14pt;
+}
+
+.taskList li .tasca {
+  font-size: 18pt;
+}
+
+.taskList li:before {
+    /*Using a Bootstrap glyphicon as the bullet point*/
+    content: "\e109";
+    font-family: 'Glyphicons Halflings';
+    font-size: 18pt;
+    float: left;
+    margin-top: 3px;
+    margin-left: -30px;
+    color: #000;
+
+}
+
+.taskList li:hover .deleteButton {
+  display: inline;
+}
+.studentsList {
+  list-style-type: none;
+  margin: 20pt;
+}
+
+.studentsList li {
+  margin-bottom: 10pt
+}
+.studentsList li span {
+  font-size: 14pt;
+}
+
+input#searchStudentsBox {
+  width: 30%;
+  margin: 5pt;
+}
+.studentsList li:hover .deleteButton {
+  display: inline;
+}
+
+.disabled {
+  color: #e0e0e0;
+}
+
+.horarisList {
+  list-style-type: none;
+  margin-top: 20px;
+  width: 50%;
+  margin: auto;
+}
+.horarisList li {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-bottom: 1px black solid;
+
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+
+}
+
+.horarisList li:hover {
+  background: #f0f0f0;
+}
+
+.horarisList li:first-child {
+    border-top: 1px black solid;
 }

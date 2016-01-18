@@ -22,24 +22,62 @@ angular.module('stugrApp')
         }
     }, 
     function(aError) {
-        console.log(aError);
+        //console.log(aError);
     });
+
+    $scope.newGrupAccordionIsOpen = false;
 
     $scope.searchData = '';
 
     $scope.groupData = {'nom': '', 'alumnes': []};
 
-    $scope.createGroup = function() {
-    	GroupModel.createGroup($scope.groupData.nom);
-    	$scope.myGroups.push($scope.groupData);
+    $scope.weekdays = [
+        {"index": 0, "string": "Dilluns"},
+        {"index": 1, "string": "Dimarts"},
+        {"index": 2, "string": "Dimecres"},
+        {"index": 3, "string": "Dijous"},
+        {"index": 4, "string": "Divendres"}
+    ];
+
+
+    $scope.hourPicker = { "time": "", "weekday": $scope.weekdays[0]};
+
+    var d = new Date();
+        d.setHours( 8 );
+        d.setMinutes( 0 );
+    $scope.hourPicker.time = d;
+
+
+    $scope.newGroupData = {
+        "nom": "",
+        "horaris": []
     };
 
-    if($stateParams.id){
-    	GroupModel.getGroupWithId($stateParams.id).then(function(result) {
-    		$scope.groupData = result;
-    	}, function(error) {
-    		console.log(error);
-    	});
+    $scope.addToTimetable = function() {
+        $scope.newGroupData.horaris.push({
+            "time": $scope.hourPicker.time,
+            "weekday": $scope.hourPicker.weekday
+        });
+
+        //console.log($scope.newGroupData.horaris);
     }
+
+    $scope.deleteHour = function(index) {
+        $scope.newGroupData.horaris.splice(index, 1);
+    }
+
+    $scope.createGroup = function() {
+    	GroupModel.createGroup($scope.newGroupData).then(function(Group) {
+            $scope.myGroups.push($scope.newGroupData);
+            $scope.newGroupData.nom = "";
+            $scope.newGroupData.horaris = [];
+
+            $scope.$apply();
+
+        }, function(Group, error) {
+            console.log("There's been an error creating group: ", error);
+        });
+    	
+    };
 
   }]);

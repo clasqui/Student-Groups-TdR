@@ -49,10 +49,7 @@ angular
         url: '/',
         controller: 'MainCtrl',
         templateUrl: 'views/main.html',
-        data: {
-          auth: true,
-          authorizedRoles: [USER_ROLES.coord, USER_ROLES.professor, USER_ROLES.alumne]
-        }
+        data: allAllowedData
       })
       .state('dashboard', {
         url: '/admin',
@@ -70,25 +67,29 @@ angular
         controller: 'GroupCtrl'
       })
       .state('courseDetail', {
-        url: '/courses/:id',
+        url: '/cursos/:id',
         templateUrl: 'views/groupdetail.html',
         data: allAllowedData,
-        controller: 'GroupCtrl'
+        controller: 'GroupdetailCtrl'
       })
       .state('profile', {
         url: '/perfil',
         template: '<h1>El teu perfil</h1>',
+        data: allAllowedData
+      }).state('otherProfile', {
+        url: '/perfil/:id',
+        template: '<h1>EL perfil d\'algú altre</h1>',
         data: {
           auth: true,
-          authorizedRoles: [USER_ROLES.coord, USER_ROLES.professor, USER_ROLES.alumne]
+          authorizedRoles: [USER_ROLES.coord, USER_ROLES.professor]
         }
       });
   }])
   .run(['$rootScope', 'Session', 'USER_ROLES', 'AUTH_EVENTS', 'Userservice', '$state', 'StugrUser', function($rootScope, Session, USER_ROLES, AUTH_EVENTS, Userservice, $state, StugrUser) {
       console.log("$stateChangeSuccess");
-      var currentUser = Parse.User.current()
+      var currentUser = Parse.User.current();
       if (currentUser) {
-        console.log("We have a session")
+        console.log("We have a session");
         console.log(currentUser);
         Session.create(currentUser._sessionToken, currentUser);
         $rootScope.currentUser = currentUser;

@@ -1,42 +1,45 @@
 <div ng-controller="MainCtrl as main">
   <div class="row">
   	<div class="col-md-6" style="text-align: center;"> 
-  		<h2>Properes Tasques</h2>
-  		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+  		<h2>Tasques d'avui</h2>
+      <span ng-show="todayTasks.length == 0">No hi ha tasques programades</span>
+      <ul class="taskList">
+        <li ng-repeat="task in todayTasks">
+          <span class="entrega"><span ng-show="isAuthorized([userRoles.alumne])">{{task.professor.full_name}} | </span>{{task.grup.nom}}</span>: <span class="tasca">{{task.nom}}</span>
+
+        </li>
+      </ul>
+
+
   	</div>
   	<div class="col-md-6" style="text-align: center;">
-  		<h2>Horari</h2>
-  		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  		<h2>Classes d'avui</h2>
+  		<span ng-show="todayClasses.length == 0">Avui no tens classes</span>
+      <ul class="horarisList">
+        <li ng-repeat="class in todayClasses | orderBy: hora.time : true">
+          {{class.group.nom}} a les {{class.hora.time | date:"HH:mm"}}
+        </li>
+      </ul>
   	</div>
   </div>
-  <div class="row">
-  	<div class="col-md-6" style="text-align: center;">
-  		<h2>Missatges Recents</h2>
-  		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  	</div>	
+  <div class="row" style="margin-top: 30px;">
   	<div class="col-md-6" style="text-align: center;">
   		<h2>Notes Recents</h2>
-  		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  		<span ng-show="recentNotes.length == 0">No hi ha notes publicades</span>
+      <div ng-repeat="note in recentNotes | orderBy:createdAt:true | limitTo: 3" class="noteDiv">
+        <div class="header">
+          <span ng-show="note.titol" style="font-size: 13pt;"><b>{{note.titol}}</b>&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="author"><span class="glyphicon glyphicon-user" /> <b>{{note.autor.full_name}}</b></span>
+          <span class="date">{{note.createdAt | date:"dd MMMM 'de' yyyy 'a les' HH:mm"}}</span>&nbsp;|&nbsp;
+          <span>{{note.grup.nom}}</span>
+        </div>
+        <div class="missatge">{{note.missatge}}</div>
+      </div>
+  	</div>	
+  	<div class="col-md-6 disabled" style="text-align: center;">
+  		<h2>Missatgeria</h2>
+  		Característica disponible pròximament.
   	</div>
   </div>
 </div>

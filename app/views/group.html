@@ -3,7 +3,7 @@
 	<div class="col-md-8">
 		<input ng-model="searchData" id="searchGroupsBox" placeholder="Cerca" name="search">
 		<div ng-if="noGroups">
-			No tens grups, crea'n un amb el formulari de l'esquerra.
+			No tens grups, crea'n un amb el formulari de la dreta.
 		</div>
 		<ul class="groupsList">
 			<li ng-repeat="group in myGroups | filter: searchData">
@@ -13,8 +13,24 @@
 	</div>
 	
 	<div class="form-box col-md-4" ng-if="isAuthorized([userRoles.coord, userRoles.professor])">
-		Crea un grup: <input placeholder="Nom" name="name" ng-model="groupData.nom" type="text"><br>
-		<button class="btn btn-info btn-block register" type="submit" ng-click="createGroup()">Crea'l</button>
+		<uib-accordion>
+    		<uib-accordion-group heading="Crea un grup" is-open="newGrupAccordionIsOpen">
+				<h5 style="text-align: center;">Nom del grup:</h5><input placeholder="Nom" name="name" ng-model="newGroupData.nom" type="text"><br>
+				<div class="timePickerControllerSet">
+				<h5 style="text-align: center;">Horari del grup:</h5>
+				<uib-timepicker  ng-model="hourPicker.time" ng-change="timeChange()" hour-step="1" minute-step="10" show-meridian="false"></uib-timepicker>
+				<select name="Dia" ng-model="hourPicker.weekday" ng-options="option.string for option in weekdays track by option.index"></select>
+				<button class="btn btn-success" ng-click="addToTimetable()"><span class="glyphicon glyphicon-plus-sign"/></button>
+				</div>
+				<ul class="timetableList">
+					<li ng-repeat="hour in newGroupData.horaris track by hour.weekday.index| orderBy: weekday.index">
+						{{hour.weekday.string}}, a les {{hour.time | date:"HH:mm"}} <button class="btn btn-danger" ng-click="deleteHour($index)"><span class="glyphicon glyphicon-remove" /></button>
+					</li>
+				</ul>
+
+				<button class="btn btn-info btn-block register" type="submit" ng-click="createGroup()">Crea'l</button>
+			</uib-accordion-group>
+		</uib-accordion>
 	</div>
 
 </div>
