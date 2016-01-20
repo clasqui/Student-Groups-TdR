@@ -153,6 +153,22 @@ angular.module('stugrApp')
             $scope.studentsList.push(user);
         };
 
+        $scope.deleteGroup = function() {
+            $scope.groupData.destroy({
+                success: function(object) {
+                    console.log("Successfully deleted");
+                    //delete tasks and notes
+                    for (var i = $scope.groupNotes.length - 1; i >= 0; i--) {
+                        $scope.groupNotes[i].destroy();
+                    };
+                    for (var i = $scope.groupTasks.length - 1; i >= 0; i--) {
+                        $scope.groupTasks[i].destroy();
+                    };
+                    $state.go('courses');
+                }
+            })
+        }
+
         $scope.changeName = function() {
             $scope.groupData.save();
         }

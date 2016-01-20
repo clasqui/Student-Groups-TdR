@@ -1,0 +1,31 @@
+<h1 style="text-align: center;">El meu perfil</h1>
+<div class="row" style="margin-top: 40px;">
+	<div class="col-md-6">
+		<p>
+		<h3>{{currentUser.full_name}}</h3>
+		<h3>Nom d'usuari: {{currentUser.username}}</h3>
+		</p>
+		<h4>Modifica les dades</h4>
+		<p>
+		Correu electrònic: <input type="text" ng-model="currentUser.email" placeholder="Escriu un correu" /><br>
+		Correu Familia: <input type="text" ng-model="specific.email" placeholder="Escriu un correu" /><br>
+		Telèfon família: <input type="text" ng-model="specific.phone" placeholder="Escriu un telèfon" />
+		</p>
+
+		<button class="btn btn-warning" ng-click="saveChanges()">Guardar Canvis</button>
+		
+	</div>
+	<div class="col-md-6">
+		<uib-accordion>
+		<uib-accordion-group heading="Canvia la contrassenya" is-open="false">
+
+		<p>
+		Nova Contrassenya: <input type="password" ng-model="passwordChange.newPass" placeholder="Escriu una contrassenya" /><br>
+		Confirmació: <input type="password" ng-model="passwordChange.re" placeholder="Torna-la a escriure" />
+		</p>
+		<button class="btn btn-warning" ng-click="changePassword()">Canviar Contrassenya</button>
+		</uib-accordion-group>
+		</uib-accordion>
+
+	</div>
+</div>

@@ -25,7 +25,7 @@ angular.module('stugrApp')
         //console.log(aError);
     });
 
-    $scope.newGrupAccordionIsOpen = false;
+    $scope.newGrupAccordionIsOpen = true;
 
     $scope.searchData = '';
 
@@ -72,7 +72,6 @@ angular.module('stugrApp')
             $scope.newGroupData.nom = "";
             $scope.newGroupData.horaris = [];
 
-            $scope.$apply();
 
         }, function(Group, error) {
             console.log("There's been an error creating group: ", error);

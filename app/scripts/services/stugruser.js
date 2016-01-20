@@ -50,7 +50,42 @@ angular.module('stugrApp')
       return this.get("first_name") + " " + this.get("last_name");
     });
 
+    User.prototype.__defineGetter__("username", function() {
+      return this.get("username");
+    });
+    User.prototype.__defineSetter__("username", function(aValue) {
+      return this.set("username", aValue);
+    });
+
+    User.prototype.__defineGetter__("email", function() {
+      return this.get("email");
+    });
+    User.prototype.__defineSetter__("email", function(aValue) {
+      return this.set("email", aValue);
+    });
+    User.prototype.__defineGetter__("alumne", function() {
+      return this.get("alumne");
+    });
+    User.prototype.__defineSetter__("alumne", function(aValue) {
+      return this.set("alumne", aValue);
+    });
+
     // Public API here
+
+    User.getUser = function(id) {
+      var query = new Parse.Query(User);
+      var deferred = $q.defer();
+
+      query.equalTo("objectId", id);
+      query.include("alumne");
+      query.first().then(function(user) {
+        deferred.resolve(user);
+      }, function(error) {
+        deferred.reject(error);
+      });
+
+      return deferred.promise;
+    }
 
     User.getListOfStudents = function(array) {
       var userQuery = new Parse.Query(User);

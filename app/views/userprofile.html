@@ -1,0 +1,23 @@
+<h1 style="text-align: center;">Perfil de {{fetchedUser.full_name}}</h1>
+<div class="row" style="margin-top: 30px;">
+	<div class="col-md-6">
+		<p>
+			Nom: <b>{{fetchedUser.full_name}}</b><br>
+			Nom d'usuari: <b>{{fetchedUser.username}}</b><br>
+			Correu electrònic: <b>{{fetchedUser.email}}</b>
+		</p>
+		<p>
+			Correu Familiar: <b>{{fetchedUser.get("alumne").get("familyEmail")}}</b><br>
+			Telèfon Familiar: <b>{{fetchedUser.get("alumne").get("familyPhone")}}</b>
+		</p>
+
+	</div>
+	<div class="col-md-6">
+		<uib-accordion>
+		<uib-accordion-group heading="Envia un missatge" is-open="false" is-disabled="true">
+		Característica deshabilitada actualment.
+		</uib-accordion-group>
+		</uib-accordion>
+
+	</div>
+</div>

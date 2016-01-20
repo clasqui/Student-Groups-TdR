@@ -10,7 +10,7 @@
 angular.module('stugrApp')
   .service('Userservice', ['$rootScope', 'Session', 'USER_ROLES', '$state', function Userservice($rootScope, Session, USER_ROLES, $state) {
     
-  	var authService = {}
+  	var authService = {};
 
   		authService.login = function(credentials) {
   			return Parse.User.logIn(credentials.username, credentials.password)

@@ -18,7 +18,7 @@
   		<h2>Classes d'avui</h2>
   		<span ng-show="todayClasses.length == 0">Avui no tens classes</span>
       <ul class="horarisList">
-        <li ng-repeat="class in todayClasses | orderBy: hora.time : true">
+        <li ng-repeat="class in todayClasses | orderBy: hora.time : false">
           {{class.group.nom}} a les {{class.hora.time | date:"HH:mm"}}
         </li>
       </ul>
@@ -28,7 +28,7 @@
   	<div class="col-md-6" style="text-align: center;">
   		<h2>Notes Recents</h2>
   		<span ng-show="recentNotes.length == 0">No hi ha notes publicades</span>
-      <div ng-repeat="note in recentNotes | orderBy:createdAt:true | limitTo: 3" class="noteDiv">
+      <div ng-repeat="note in recentNotes | orderBy:createdAt:true | limitTo: 10" class="noteDiv">
         <div class="header">
           <span ng-show="note.titol" style="font-size: 13pt;"><b>{{note.titol}}</b>&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="author"><span class="glyphicon glyphicon-user" /> <b>{{note.autor.full_name}}</b></span>
           <span class="date">{{note.createdAt | date:"dd MMMM 'de' yyyy 'a les' HH:mm"}}</span>&nbsp;|&nbsp;

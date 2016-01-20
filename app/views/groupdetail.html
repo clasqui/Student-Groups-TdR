@@ -12,7 +12,7 @@
 <div class="row">
 	<div class="col-md-6">
 		<uib-accordion>
-		<uib-accordion-group heading="Envia una nota" is-open="true">
+		<uib-accordion-group heading="Envia una nota" is-open="false">
 		<div class="row">
 			<div class="col-md-6">
 			<h4>Títol:</h4>
@@ -32,7 +32,7 @@
 	</div>
 	<div class="col-md-6" ng-if="isAuthorized([userRoles.coord, userRoles.professor])">
 		<uib-accordion>
-		<uib-accordion-group heading="Crea una tasca" is-open="true">
+		<uib-accordion-group heading="Crea una tasca" is-open="false">
 		<div class="row">
 			<div class="col-md-6">
 			<h4>Nom:</h4>
@@ -80,10 +80,10 @@
 <div class="row" style="margin-top: 20px;" ng-if="isAuthorized([userRoles.coord, userRoles.professor])">
 	<div class="col-md-6">
 		<uib-accordion>
-		<uib-accordion-group heading="Llistat d'alumnes" is-open="true">
+		<uib-accordion-group heading="Llistat d'alumnes" is-open="false">
 		<input ng-model="studentSearchData" id="searchStudentsBox" placeholder="Cerca" name="search">
 		<ul class="studentsList">
-			<li ng-repeat="student in studentsList | filter: studentSearchData">
+			<li ng-repeat="student in studentsList | filter: studentSearchData | orderBy: last_name">
 				<span><a ui-sref="otherProfile({id: student.id})">{{student.full_name}}</a></span>&nbsp;&nbsp;<span style="font-size: 11pt;" ng-click="deleteStudent(student.id, $index)" class="deleteButton glyphicon glyphicon-remove" />
 			</li>
 		</ul>
@@ -94,13 +94,12 @@
 	</div>
 	<div class="col-md-6">
 		<uib-accordion>
-		<uib-accordion-group heading="Afegeix un alumne" is-open="true">
+		<uib-accordion-group heading="Afegeix un alumne" is-open="false">
 
 			<h4 style="text-align: center;">Nom de l'alumne:</h4>
 			<input type="text" ng-model="userToBeAdded" placeholder="Comença a escriure" uib-typeahead="results as results.full_name for results in getAllStudents($viewValue)" typeahead-show-hint="true" typeahead-loading="loadingStudents" typeahead-no-results="noResults" class="form-control">
 			<p>
 			<span ng-show="loadingStudents">Carregant...</span><span ng-show="noResults">No hi ha resultats</span>
-			{{userToBeAdded.id}}
 			</p>
 			<p><button class="btn btn-info" type="submit" ng-click="addStudent({{userToBeAdded}})">Afegeix</button></p>
 
@@ -109,8 +108,8 @@
 
 	</div>
 </div>
-<uib-accordion>
-<uib-accordion-group heading="Configuració del grup" panel-class="panel-danger" is-open="true">
+<uib-accordion ng-if="isAuthorized([userRoles.coord, userRoles.professor])">
+<uib-accordion-group heading="Configuració del grup" panel-class="panel-danger" is-open="false">
 	<div class="row">
 		<div class="col-md-4">
 			<h5>Canvia el nom</h5>
@@ -119,6 +118,9 @@
 		</div>
 		<div class="col-md-4">
 			<h5>Canvia els horaris</h5>
+			<ul>
+				<li ng-repeat="time in groupdata.horari">
+					{{time.weekday.string}} | {{time.time | date:"HH:mm"}}
 		</div>
 		<div class="col-md-4">
 			<h5>Elimina el grup</h5>

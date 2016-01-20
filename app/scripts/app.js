@@ -74,11 +74,14 @@ angular
       })
       .state('profile', {
         url: '/perfil',
-        template: '<h1>El teu perfil</h1>',
+        templateUrl: 'views/myprofile.html',
+        controller: 'ProfileCtrl',
         data: allAllowedData
-      }).state('otherProfile', {
+      })
+      .state('otherProfile', {
         url: '/perfil/:id',
-        template: '<h1>EL perfil d\'algú altre</h1>',
+        templateUrl: 'views/userprofile.html',
+        controller: 'ProfileCtrl',
         data: {
           auth: true,
           authorizedRoles: [USER_ROLES.coord, USER_ROLES.professor]

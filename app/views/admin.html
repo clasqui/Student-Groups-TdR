@@ -7,16 +7,17 @@
 	<h3>Crea un usuari</h3>
 
 	<form action="" method="">
-        <input name="user" type="text" placeholder="username" ng-model="newUser.username">
-        <input type="email" placeholder="email" ng-model="newUser.email">
-        <input type="text" placeholder="First Name" ng-model="newUser.first_name">
-        <input type="text" placeholder="Last Name" ng-model="newUser.last_name">
+        <input name="user" type="text" placeholder="Nom d'usuari" ng-model="newUser.username"><br>
+        <input type="email" placeholder="Correu" ng-model="newUser.email"><br>
+        <input type="text" placeholder="Nom" ng-model="newUser.first_name"><br>
+        <input type="text" placeholder="Cognom" ng-model="newUser.last_name"><br>
         <select ng-model="newUser.role">
         	<option value="1">Alumne</option>
         	<option value="2">Professor</option>
         	<option value="3">Coordinador</option>
         </select>
-        <button class="btn btn-info btn-block register" type="submit" ng-click="doCreate()">Register</button>
+        <br>
+        <button class="btn btn-info register" type="submit" ng-click="doCreate()">Register</button>
 
     </form>
     </div>
