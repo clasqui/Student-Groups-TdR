@@ -20,4 +20,4 @@ install:
 before_script:
   - npm install -g grunt-cli karma jshint
 script:
-  -grunt build
+  - grunt build
