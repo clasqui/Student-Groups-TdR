@@ -1,23 +1,45 @@
 language: node_js
 node_js:
-  - "6"
+- '6'
 before_install:
-    # setting the path for phantom.js 2.0.0
-    - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
-    # starting a GUI to run tests, per https://docs.travis-ci.com/user/gui-and-headless-browsers/#Using-xvfb-to-Run-Tests-That-Require-a-GUI
-    - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
-    - "npm config set spin false"
-    - "npm install -g npm@^2"
+- export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- npm config set spin false
+- npm install -g npm@^2
 install:
-    - mkdir travis-phantomjs
-    - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-    - tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
-    - export PATH=$PWD/travis-phantomjs:$PATH
-    - npm install -g bower
-    - npm install
-    - bower install
+- mkdir travis-phantomjs
+- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+  -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+- tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
+- export PATH=$PWD/travis-phantomjs:$PATH
+- npm install -g bower
+- npm install
+- bower install
 before_script:
-  - npm install -g grunt-cli karma jshint
+- npm install -g grunt-cli karma jshint
 script:
-  - grunt build
+- grunt
+deploy:
+- provider: s3
+  access_key_id: AKIAJRLNQMDURUTXC75Q
+  secret_access_key: &1
+    secure: r/mXLKSJjVb8DK5eBN/gE3/oH7Mf6fXVTlMnmMe7OrkVQXdHBexsrk1nJdDPdedo1TVlkfIerM3yohRn5HCSfBB2AE/f3j+pN0w21kGwRDXPZ6N5ol88hYVTWd9t8XXzEKHluL9HItoAr8MLhXl9Y2fNR+Ea1LOlsR0GGBfFf+onkyVxbb9vP1wU5Q6Wo3/DA+nGEWWSppA/dP2i1MuOvZ/acyOLSKd5A8qLTAHS7OwyWchFasP8JY1fYRUGQoT5chL2MXBAElrerfH0OvCw4yIFRNAL02eW1+pNO+rBP7H/1TCN6GVBblnkcO9wyxUj2l9rc3SRHB1VulRe5dHIgHPjgD2oYfeRURzis+50EE+MQLqRCxtiWa09YoLrbFBF2QZjt7fjt+SXpCYpGez9GmsUdVZqw/6NhDiBCVQ2r9iqc89Iact+ujrMe1Ax4sc+hev7/OzrrApTZtJRkTX2BqmqnuS73ffYbGSLoQ4rmL81mB1a4+5hR7Vin1QDVIaVDU6bR+2tYc0zsdW40OodtIl29JoF6KeZlPFzKBdd4TLyXs0S0ZaDsd7yKaOoFa0oWzqhlE/xP/3j3878Xw5Vakt+GP9WimnT2ZaT3CYJZT04Cz6/CSMcS6edEtAdWYPsj4zh2PD42Byai7IVh6wpi1wU/B3usA02ozgPqYYWcTw=
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  on: &2
+    repo: hulehule20/Student-Groups-TdR
+  bucket: stugr-deploy
+  upload_dir: frontend/latest
+- provider: codedeploy
+  access_key_id: AKIAJRLNQMDURUTXC75Q
+  secret_access_key: *1
+  bucket: stugr-deploy
+  key: frontend/latest/Stugr.zip
+  bundle_type: zip
+  application: StudentGroups
+  deployment_group: StgrFleet
+  on: *2
+before_deploy:
+- mkdir -p dpl_cd_upload
+- mv Stugr.zip dpl_cd_upload/Stugr.zip
