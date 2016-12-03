@@ -17,7 +17,4 @@ describe('Controller: ProfileCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(ProfileCtrl.awesomeThings.length).toBe(3);
-  });
 });
