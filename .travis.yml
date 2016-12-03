@@ -41,5 +41,6 @@ deploy:
   deployment_group: StgrFleet
   on: *2
 before_deploy:
+- zip -r Stugr *
 - mkdir -p dpl_cd_upload
 - mv Stugr.zip dpl_cd_upload/Stugr.zip
