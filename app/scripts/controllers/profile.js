@@ -12,7 +12,7 @@ angular.module('stugrApp')
     
   	if($stateParams.id) {
 
-  		$scope.fetchedUser = {}
+  		$scope.fetchedUser = {};
 
   		//The view is for another profile, show the details
   		StugrUser.getUser($stateParams.id).then(function(user) {
@@ -29,12 +29,12 @@ angular.module('stugrApp')
   		$scope.passwordChange = {
   			'newPass': '',
   			're': ''
-  		}
+  		};
 
   		$scope.specific = {
   			'phone': '',
   			'email': ''
-  		}
+  		};
 
   		var Alumne = Parse.Object.extend("Alumne");
   		var query = new Parse.Query(Alumne);
@@ -44,26 +44,26 @@ angular.module('stugrApp')
   			$scope.specific.email = alumne.get("familyEmail");
   		}, function(error) {
   			console.log("There's been an error: ", error);
-  		})
+  		});
 
   		$scope.saveChanges = function() {
-  			$scope.currentUser.save().then(function(user) {
+  			$scope.currentUser.save().then(function() {
   				console.log("Changed");
-  			}, function(error) {
+  			}, function() {
   				console.log("There's been an error");
   			});
-  		}
+  		};
 
   		$scope.changePassword = function() {
   			if($scope.passwordChange.newPass === $scope.passwordChange.re) {
   				$scope.currentUser.set("password", $scope.passwordChange.newPass);
-  				$scope.currentUser.save().then(function(user) {
+  				$scope.currentUser.save().then(function() {
   					console.log("Changed");
   				}, function(error) {
   					console.log("Theres nneen an error, ", error);
   				});
   			}
-  		}
+  		};
 
   	}
 

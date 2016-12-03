@@ -43,7 +43,7 @@ angular.module('stugrApp')
     	var d = new Date();
 		var n = d.getDay();
 
-		if(n == 7 || n == 0) {
+		if(n === 7 || n === 0) {
 			//weekend, nothing else
 			$scope.todayClasses = [];
 			return;
@@ -55,22 +55,22 @@ angular.module('stugrApp')
 		for (var i = results.length - 1; i >= 0; i--) {
 			var horaris = results[i].horari;
 			console.log(horaris);
-			if(horaris != null) {
+			if(horaris !== null) {
 				for (var j = horaris.length - 1; j >= 0; j--) {
 					console.log(horaris[j]);
-					if(horaris[j].weekday.index == n) {
+					if(horaris[j].weekday.index === n) {
 						console.log(true);
 						$scope.todayClasses.push({
 							'group': results[i],
 							'hora': horaris[j]
 						});
 					}
-				};
+				}
 			}
-		};
+		}
 		console.log($scope.todayClasses);
 
-    }, function(error) {
+    }, function() {
 
     });
 

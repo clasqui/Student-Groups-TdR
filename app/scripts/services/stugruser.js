@@ -24,7 +24,7 @@ angular.module('stugrApp')
           role = USER_ROLES.alumne;
         }
         console.log(role);
-        return role
+        return role;
       }
 
     }, {
@@ -85,12 +85,12 @@ angular.module('stugrApp')
       });
 
       return deferred.promise;
-    }
+    };
 
     User.getListOfStudents = function(array) {
       var userQuery = new Parse.Query(User);
       var deferred = $q.defer();
-      console.log(array)
+      console.log(array);
 
       userQuery.containedIn("objectId", array);
       userQuery.find({
@@ -135,7 +135,7 @@ angular.module('stugrApp')
 
       return deferred.promise;
 
-    }
+    };
 
     return User;
   }]);

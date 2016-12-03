@@ -1,3 +1,4 @@
+// globals Parse
 'use strict';
 
 describe('Controller: AdminCtrl', function () {
@@ -9,7 +10,7 @@ describe('Controller: AdminCtrl', function () {
     scope;
 
     beforeAll(function() {
-      Parse.initialize("uwVnHZfS8WuM0ACmcOfbjhOl5n9t3y73HDM9q3NF", "BkEKop1rkA9eKLTbUkHkopFdupSCl8urmBceVxN8");
+      Parse.initialize("uwVnHZfS8WuM0ACmcOfbjhOl5n9t3y73HDM9q3NF", "BkEKop1rkA9eKLTbUkHkopFdupSCl8urmBceVxN8"); // jshint ignore:line
     });
 
   // Initialize the controller and a mock scope

@@ -73,7 +73,7 @@ angular.module('stugrApp')
     groupModel.getGroups = function() {
       var query = new Parse.Query(ParseGroup);
       var deferred = $q.defer();
-      if($rootScope.currentUser.role() == USER_ROLES.alumne) {
+      if($rootScope.currentUser.role() === USER_ROLES.alumne) {
         query.equalTo("alumnes", $rootScope.currentUser.id);
         query.find({
           success: function(results) {

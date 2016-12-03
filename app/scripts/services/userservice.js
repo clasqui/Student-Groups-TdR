@@ -1,5 +1,7 @@
 'use strict';
 
+// globals Parse
+
 /**
  * @ngdoc service
  * @name stugrApp.Userservice
@@ -40,10 +42,8 @@ angular.module('stugrApp')
         var coordLinker = new Coordinador();
 
         // Save the linked object
-        return coordLinker.save(null);
-
-  			
-  		};
+        return coordLinker.save(null); 
+  		}; // jshint ignore:line
 
       authService.createUser = function(credentials, id) {
         // These are the arrays with the types

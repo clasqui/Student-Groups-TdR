@@ -8,12 +8,12 @@
  * Controller of the stugrApp
  */
 angular.module('stugrApp')
-  .controller('GroupCtrl', ['$rootScope', '$scope', 'GroupModel', 'Userservice', 'USER_ROLES', '$stateParams', function ($rootScope, $scope, GroupModel, Userservice, USER_ROLES, $stateParams) {
+  .controller('GroupCtrl', ['$rootScope', '$scope', 'GroupModel', 'Userservice', 'USER_ROLES', function ($rootScope, $scope, GroupModel, Userservice, USER_ROLES) {
     $scope.isAuthorized = Userservice.isAuthorized;
     $scope.userRoles = USER_ROLES;
 
     GroupModel.getGroups().then(function(results) {
-        if(results.length == 0) {
+        if(results.length === 0) {
             $scope.noGroups = true;
             $scope.myGroups = [];
         } else {
@@ -22,7 +22,7 @@ angular.module('stugrApp')
         }
     }, 
     function(aError) {
-        //console.log(aError);
+        console.log(aError);
     });
 
     $scope.newGrupAccordionIsOpen = true;
@@ -60,14 +60,14 @@ angular.module('stugrApp')
         });
 
         //console.log($scope.newGroupData.horaris);
-    }
+    };
 
     $scope.deleteHour = function(index) {
         $scope.newGroupData.horaris.splice(index, 1);
-    }
+    };
 
     $scope.createGroup = function() {
-    	GroupModel.createGroup($scope.newGroupData).then(function(Group) {
+    	GroupModel.createGroup($scope.newGroupData).then(function() {
             $scope.myGroups.push($scope.newGroupData);
             $scope.newGroupData.nom = "";
             $scope.newGroupData.horaris = [];

@@ -88,7 +88,7 @@ angular
         }
       });
   }])
-  .run(['$rootScope', 'Session', 'USER_ROLES', 'AUTH_EVENTS', 'Userservice', '$state', 'StugrUser', function($rootScope, Session, USER_ROLES, AUTH_EVENTS, Userservice, $state, StugrUser) {
+  .run(['$rootScope', 'Session', 'USER_ROLES', 'AUTH_EVENTS', 'Userservice', '$state', function($rootScope, Session, USER_ROLES, AUTH_EVENTS, Userservice, $state) {
       console.log("$stateChangeSuccess");
       var currentUser = Parse.User.current();
       if (currentUser) {
@@ -99,8 +99,7 @@ angular
       } else {
         Session.destroy();
       }
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams, 
-              fromState, fromParams) {
+    $rootScope.$on('$stateChangeStart', function (event, toState) {
       console.log("$stateChangeStart");
       console.log(toState);
       if(toState.data.auth) {

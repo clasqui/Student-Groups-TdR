@@ -8,7 +8,7 @@
  * Service in the stugrApp.
  */
 angular.module('stugrApp')
-  .service('Session', ['USER_ROLES', function (USER_ROLES) {
+  .service('Session', [function () {
 
   this.create = function (sessionId, userId) {
     this.id = sessionId;

@@ -20,13 +20,13 @@ describe('Service: Userservice', function () {
   }));
 
   beforeAll(function() {
-    Parse.initialize("uwVnHZfS8WuM0ACmcOfbjhOl5n9t3y73HDM9q3NF", "BkEKop1rkA9eKLTbUkHkopFdupSCl8urmBceVxN8");
+    Parse.initialize("uwVnHZfS8WuM0ACmcOfbjhOl5n9t3y73HDM9q3NF", "BkEKop1rkA9eKLTbUkHkopFdupSCl8urmBceVxN8"); // jshint ignore:line
   });
 
   xit('should have internet connection', function() {
     var online = navigator.onLine;
     expect(online).toBeTruthy();
-  })
+  });
 
   it('should do something', function () {
     expect(!!Userservice).toBe(true);
@@ -45,7 +45,7 @@ describe('Service: Userservice', function () {
 
   it('should logout successfully', function() {
     Userservice.logOut();
-    expect(Parse.User.current()).toBeNull();
+    expect(Parse.User.current()).toBeNull(); // jshint ignore:line
     expect(Userservice.isAuthenticated()).toBeFalsy();
   });
 

@@ -8,7 +8,7 @@
  * Controller of the stugrApp
  */
 angular.module('stugrApp')
-  .controller('AppCtrl', ['$rootScope', '$scope', '$location', 'Userservice', 'StugrUser', 'AUTH_EVENTS', 'USER_ROLES', '$state', 'Session', function ($rootScope, $scope, $location, Userservice, StugrUser, AUTH_EVENTS, USER_ROLES, $state, Session) {
+  .controller('AppCtrl', ['$rootScope', '$scope', '$location', 'Userservice', 'StugrUser', 'AUTH_EVENTS', 'USER_ROLES', '$state', function ($rootScope, $scope, $location, Userservice, StugrUser, AUTH_EVENTS, USER_ROLES, $state) {
 
   $scope.userCredentials       =   { 'username': '', 'password': '', 'email': '', 'first_name': '', 'last_name': ''};
   $scope.registerUserMode      =   false;

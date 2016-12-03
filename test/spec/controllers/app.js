@@ -1,5 +1,4 @@
 'use strict';
-
 describe('Controller: AppCtrl', function () {
 
   // load the controller's module
@@ -10,7 +9,7 @@ describe('Controller: AppCtrl', function () {
     x;
 
     beforeAll(function() {
-      Parse.initialize("uwVnHZfS8WuM0ACmcOfbjhOl5n9t3y73HDM9q3NF", "BkEKop1rkA9eKLTbUkHkopFdupSCl8urmBceVxN8");
+      Parse.initialize("uwVnHZfS8WuM0ACmcOfbjhOl5n9t3y73HDM9q3NF", "BkEKop1rkA9eKLTbUkHkopFdupSCl8urmBceVxN8"); // jshint ignore:line
     });
 
   // Initialize the controller and a mock scope
@@ -26,7 +25,7 @@ describe('Controller: AppCtrl', function () {
     scope.mockData = {
       userId: '',
       session: ''
-    }
+    };
   }));
 
   it('should have a Student Groups as codename', function () {

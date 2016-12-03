@@ -59,7 +59,7 @@ angular.module('stugrApp')
         };
 
         $scope.postNote = function() {
-            if ($scope.newNote.missatge == "") {
+            if ($scope.newNote.missatge === "") {
                 console.log("Write Something as the message");
                 return;
             }
@@ -69,7 +69,7 @@ angular.module('stugrApp')
                 $scope.newNote.titol = "";
                 $scope.newNote.missatge = "";
                 $scope.groupNotes.push(note);
-            }).then(function(error) {
+            }).then(function() {
 
             });
 
@@ -89,7 +89,7 @@ angular.module('stugrApp')
         };
 
         $scope.createTask = function() {
-            if ($scope.newTask.nom == "" || $scope.newTask.entrega == "") {
+            if ($scope.newTask.nom === "" || $scope.newTask.entrega === "") {
                 console.log("Write Something");
                 return;
             }
@@ -99,7 +99,7 @@ angular.module('stugrApp')
                 $scope.newTask.nom = "";
                 $scope.newTask.entrega = new Date();
                 $scope.groupTasks.push(task);
-            }).then(function(error) {
+            }).then(function() {
 
             });
         };
@@ -107,7 +107,7 @@ angular.module('stugrApp')
         $scope.deleteNote = function(index) {
             var noteToBeDestroyed = $scope.groupNotes[index];
             noteToBeDestroyed.destroy({
-                success: function(object) {
+                success: function() {
                     console.log("successfully deleted");
                     $scope.groupNotes.splice(index, 1);
                     $scope.$apply();
@@ -122,12 +122,12 @@ angular.module('stugrApp')
         $scope.deleteTask = function(index) {
             var taskToBeDestroyed = $scope.groupTasks[index];
             taskToBeDestroyed.destroy({
-                success: function(object) {
+                success: function() {
                     console.log("successfully deleted");
                     $scope.groupTasks.splice(index, 1);
                     $scope.$apply();
                 }
-            })
+            });
         };
 
         $scope.deleteStudent = function(id, index) {
@@ -135,13 +135,13 @@ angular.module('stugrApp')
             $scope.groupData.save();
             $scope.studentsList.splice(index, 1);
 
-        }
+        };
 
         $scope.getAllStudents = function(val) {
             return StugrUser.searchAllStudents(val).then(function(results) {
                 console.log(results);
                 return results;
-            }, function(error) {
+            }, function() {
 
             });
         };
@@ -155,23 +155,23 @@ angular.module('stugrApp')
 
         $scope.deleteGroup = function() {
             $scope.groupData.destroy({
-                success: function(object) {
+                success: function() {
                     console.log("Successfully deleted");
                     //delete tasks and notes
                     for (var i = $scope.groupNotes.length - 1; i >= 0; i--) {
                         $scope.groupNotes[i].destroy();
-                    };
-                    for (var i = $scope.groupTasks.length - 1; i >= 0; i--) {
+                    }
+                    for (i = $scope.groupTasks.length - 1; i >= 0; i--) {
                         $scope.groupTasks[i].destroy();
-                    };
+                    }
                     $state.go('courses');
                 }
-            })
-        }
+            });
+        };
 
         $scope.changeName = function() {
             $scope.groupData.save();
-        }
+        };
 
 
     } else {

@@ -11,9 +11,9 @@ angular.module('stugrApp')
     return {
       template: '<div ng-if="visible">There was an authentication error</div>',
       restrict: 'A',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope) {
         var showDialog = function (e) {
-          alert(e)
+          window.alert(e);
           scope.visible = true;
         };
   

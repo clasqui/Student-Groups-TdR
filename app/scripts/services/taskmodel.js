@@ -68,7 +68,7 @@ angular.module('stugrApp')
           deferred.resolve(results);
         },
         error: function(aError) {
-          console.log("theres been an error: ", aError)
+          console.log("theres been an error: ", aError);
           deferred.reject(aError);
         }
       });
