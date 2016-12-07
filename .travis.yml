@@ -22,26 +22,27 @@ script:
 - grunt
 deploy:
 - provider: s3
-  access_key_id: AKIAJRLNQMDURUTXC75Q
+  access_key_id: AKIAISQ2T7GSTDMNQUXQ
   secret_access_key: &1
-    secure: r/mXLKSJjVb8DK5eBN/gE3/oH7Mf6fXVTlMnmMe7OrkVQXdHBexsrk1nJdDPdedo1TVlkfIerM3yohRn5HCSfBB2AE/f3j+pN0w21kGwRDXPZ6N5ol88hYVTWd9t8XXzEKHluL9HItoAr8MLhXl9Y2fNR+Ea1LOlsR0GGBfFf+onkyVxbb9vP1wU5Q6Wo3/DA+nGEWWSppA/dP2i1MuOvZ/acyOLSKd5A8qLTAHS7OwyWchFasP8JY1fYRUGQoT5chL2MXBAElrerfH0OvCw4yIFRNAL02eW1+pNO+rBP7H/1TCN6GVBblnkcO9wyxUj2l9rc3SRHB1VulRe5dHIgHPjgD2oYfeRURzis+50EE+MQLqRCxtiWa09YoLrbFBF2QZjt7fjt+SXpCYpGez9GmsUdVZqw/6NhDiBCVQ2r9iqc89Iact+ujrMe1Ax4sc+hev7/OzrrApTZtJRkTX2BqmqnuS73ffYbGSLoQ4rmL81mB1a4+5hR7Vin1QDVIaVDU6bR+2tYc0zsdW40OodtIl29JoF6KeZlPFzKBdd4TLyXs0S0ZaDsd7yKaOoFa0oWzqhlE/xP/3j3878Xw5Vakt+GP9WimnT2ZaT3CYJZT04Cz6/CSMcS6edEtAdWYPsj4zh2PD42Byai7IVh6wpi1wU/B3usA02ozgPqYYWcTw=
+    secure: SAoI74MsmKogkKEWeRsbDZazRZPvw+Y4ts4Qn0V6C3DWtXjtpoSqR/I1fjRqEIs2IgkodQPZgKQ6nEie47kS0jCxn+07OmN2L5PkPiSG16vh0vppxFFUgXCrfC15ImVuvq7BJBcFUmQauBZ+6yv0LY2xynXD6jPsazgpnOfJpkXvqjCmL90up3/XQU4wa6W24DPZMw2LwMGaG6rDHpFQhBRLrktmSjVSQnrkGw3vxFvlIgIG9B9JvoZ2BpITFLsF99nVFMkivfj+uuiGYiIWosnYS8WsN+2/kNRI99REWWsskAqgij9zf1fBrn9ukLChaZVV9zbDR3nNVPiijCDKsPiZv/FHf+kbEmPLJm55BrITD6JgPMg+qbARjAuRxxl3ZthH8N+Pbacq4INoFHB/B8hgNfovWEvRTiT2Ped4zlGkI2WG/CqhdOoRS/Dpf6bi22c75rPy5UxLl1LcSQpFq1QRRDpA3Dh/UNVYQgklTZkcJTLz1RhY/al1Ra44Fna8B6dwDvt7sKJNlVAlQ5gBPaYyRcEDydfNZJaTr4WQ2A6O0eqYzZGnpP0IOYDHBhMBBlK3ZhwTrrMJV/xDuWxFZIv8rj/JFOFjaAaCIGQ3kL79393v8aSv1UJpyZIsTSsRXxqu4jtXACUmMAdgG176AFCvqc0Fa5wwOWPAE9GDS+I=
   local_dir: dpl_cd_upload
   skip_cleanup: true
   on: &2
     repo: hulehule20/Student-Groups-TdR
   bucket: stugr-deploy
-  upload_dir: frontend/latest
+  upload_dir: latest
 - provider: codedeploy
-  access_key_id: AKIAJRLNQMDURUTXC75Q
+  access_key_id: AKIAISQ2T7GSTDMNQUXQ
   secret_access_key: *1
   bucket: stugr-deploy
-  key: frontend/latest/Stugr.zip
+  key: latest/Stugr.zip
   bundle_type: zip
   application: StudentGroups
   deployment_group: StgrFleet
   on: *2
 before_deploy:
-- head -n -1 .gitignore
+- head -n -1 .gitignore > temp.txt
+- mv temp.txt .gitignore
 - git archive -v -o Stugr.zip HEAD
 - mkdir -p dpl_cd_upload
 - mv Stugr.zip dpl_cd_upload/Stugr.zip
